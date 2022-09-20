@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 import Joi from "joi";
 import { joiPasswordExtendCore } from "joi-password";
+import { UserInformationSchema } from "./usersInformation/userInformationModel";
 
 const joiPassword = Joi.extend(joiPasswordExtendCore);
 
-const UserSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
@@ -19,18 +20,24 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    imgSrc: {
+        type: String,
+        default: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+    },
     information: {
-        type: Object
+        type: UserInformationSchema
     }
 });
 
-const UserValidation = Joi.object({
-    username: Joi.string()
+export const UserValidation = Joi.object({
+    username: Joi
+        .string()
         .alphanum()
         .min(4)
         .max(16)
         .required(),
-    email:  Joi.string()
+    email: Joi
+        .string()
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
     password: joiPassword
         .string()

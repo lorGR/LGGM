@@ -1,12 +1,15 @@
 import express from "express";
 
-
 import { UserModel } from "./userModel";
+import { UserValidation } from "./userModel";
 
 export async function register(req: express.Request, res: express.Response) {
     try {
-        const { email, username, password } = req.body;
-        if (!email || !username || !password) throw new Error("Missing fields in register");
+        const { email, username, password, confirmPassword } = req.body;
+        if (!email || !username || !password || !confirmPassword) throw new Error("Missing fields in register");
+
+        const { error } = UserValidation.validate({email, username, password, confirmPassword});
+        if(error) throw error;
 
         const userDB = await new UserModel({ email, password, username });
         await userDB.save();
