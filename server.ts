@@ -17,6 +17,12 @@ if(mongodb_uri) {
     console.log("Couldn't find mongodb_uri");
 }
 
+app.use(express.json());
+app.use(express.static("client/build"));
+
+import userRoutes from "./API/users/userRoutes";
+app.use("/users", userRoutes);
+
 app.listen(port, () => {
     console.log(`Server is running http://localhost:${port}/`);
 });
