@@ -1,6 +1,5 @@
 import { string } from "joi";
 import mongoose from "mongoose";
-import { UserSchema } from "../userModel";
 
 enum Gender {
     MALE = "male",
@@ -9,14 +8,14 @@ enum Gender {
 }
 
 export const UserInformationSchema = new mongoose.Schema({
-    // user: UserSchema,
+    userId: String,
     firstName: String,
     lastName: String,
-    Country: String,
-    City: String,
-    Address: String,
+    country: String,
+    city: String,
+    address: String,
     phoneNumber: String,
-    birthDay: Date,
+    birthDay: String,
     about: String,
     proffession: String,
     gender: {
