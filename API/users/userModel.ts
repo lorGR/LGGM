@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Joi from "joi";
 import { joiPasswordExtendCore } from "joi-password";
-import { UserInformationSchema } from "./usersInformation/userInformationModel";
+import { UserInformationSchema } from "../usersInformation/userInformationModel";
 
 const joiPassword = Joi.extend(joiPasswordExtendCore);
 
