@@ -23,7 +23,7 @@ app.use(express.static("client/build"));
 import userRoutes from "./API/users/userRoutes";
 app.use("/users", userRoutes);
 
-import userInformation from "./API/users/usersInformation/userInforamtionRoutes";
+import userInformation from "./API/usersInformation/userInforamtionRoutes";
 app.use("/usersInformation", userInformation);
 
 app.listen(port, () => {
