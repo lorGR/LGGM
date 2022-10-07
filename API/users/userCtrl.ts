@@ -1,5 +1,4 @@
 import express from "express";
-
 import { UserModel, UserValidation } from "./userModel";
 
 export async function register(req: express.Request, res: express.Response) {
@@ -44,5 +43,16 @@ export async function getUser(req: express.Request, res: express.Response) {
         res.send({userDB});
     } catch (error) {
         res.send({ error: error.message })
+    }
+}
+
+export async function isExist(req: express.Request, res: express.Response) {
+    try {
+        const {email, password, rePassword} = req.body;
+        if(!email || !password || !rePassword) throw new Error("missing information from client")
+        const userDB = await UserModel.findOne({email});
+        userDB ? res.send({isExist: true}) : res.send({isExist: false})
+    } catch (error) {
+        res.send({error: error.message})
     }
 }
