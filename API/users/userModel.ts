@@ -29,12 +29,12 @@ export const UserSchema = new mongoose.Schema({
 });
 
 export const UserValidation = Joi.object({
-    username: Joi
-        .string()
-        .alphanum()
-        .min(4)
-        .max(16)
-        .required(),
+    // username: Joi
+    //     .string()
+    //     .alphanum()
+    //     .min(4)
+    //     .max(16)
+    //     .required(),
     email: Joi
         .string()
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
